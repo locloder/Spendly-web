@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#1B47E0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Spendly">
+<title>Spendly</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/dialogs.css">
+</head>
+<body>
+<main id="app"></main>
+<nav>
+  <button class="tab" data-v="home"><span data-icon="wallet"></span>Кошелёк</button>
+  <button class="tab" data-v="hist"><span data-icon="history"></span>История</button>
+  <button id="fab" aria-label="Добавить" data-icon="plus" data-size="32"></button>
+  <button class="tab" data-v="an"><span data-icon="chart"></span>Анализ</button>
+  <button class="tab" data-v="subs"><span data-icon="repeat"></span>Подписки</button>
+</nav>
+
+<dialog id="add">
+  <div class="seg" id="kind"><button data-k="0" class="on">Расход</button><button data-k="1">Доход</button></div>
+  <div class="tools">
+    <button class="btn" id="mic"><span data-icon="mic" data-size="18"></span>Голосом</button>
+    <label class="btn"><span data-icon="camera" data-size="18"></span>Чек<input id="photo" type="file" accept="image/*" hidden></label>
+  </div>
+  <div id="heard"></div>
+  <label for="a">Сумма</label><input id="a" inputmode="decimal" placeholder="0">
+  <label for="c">Категория</label><select id="c"></select>
+  <label for="n">Заметка</label><input id="n">
+  <label for="d">Дата</label><input id="d" type="date">
+  <button class="primary" id="save">Сохранить</button>
+  <button class="ghost" id="cancel">Отмена</button>
+</dialog>
+
+<dialog id="sub">
+  <b>Новая подписка</b>
+  <label for="sn">Название</label><input id="sn" placeholder="Netflix, Spotify…">
+  <label for="sp">Цена в месяц</label><input id="sp" inputmode="decimal">
+  <label for="sd">День списания (1–28)</label><input id="sd" type="number" min="1" max="28" value="1">
+  <label for="sr">Напомнить</label>
+  <select id="sr"><option value="0">в день списания</option><option value="1" selected>за 1 день</option><option value="2">за 2 дня</option><option value="3">за 3 дня</option><option value="7">за неделю</option></select>
+  <button class="primary" id="sSave">Сохранить</button>
+  <button class="ghost" id="sCancel">Отмена</button>
+</dialog>
+
+<dialog id="jar">
+  <b>Новая цель накопления</b>
+  <label for="jn">На что копим</label><input id="jn" placeholder="Отпуск, ноутбук…">
+  <label for="jt">Нужная сумма</label><input id="jt" inputmode="decimal">
+  <button class="primary" id="jSave">Создать</button>
+  <button class="ghost" id="jCancel">Отмена</button>
+</dialog>
+
+<dialog id="set">
+  <b>Настройки</b>
+  <label for="st">Начальный баланс</label><input id="st" inputmode="decimal">
+  <label for="cu">Валюта</label>
+  <select id="cu"><option>RUB</option><option>CZK</option><option>EUR</option><option>USD</option><option>KZT</option><option>UAH</option><option>BYN</option><option>PLN</option><option>GBP</option></select>
+  <label for="gl">Лимит расходов на неделю</label><input id="gl" inputmode="decimal" placeholder="0">
+  <label for="wg">Ваш заработок в час</label><input id="wg" inputmode="decimal" placeholder="0">
+  <div class="tools"><button class="btn" id="exp">Копия JSON</button><button class="btn" id="csv">Выгрузить CSV</button></div>
+  <div class="tools"><label class="btn">Загрузить копию<input id="imp" type="file" accept=".json" hidden></label></div>
+  <button class="primary" id="setSave">Готово</button>
+</dialog>
+
+<div id="toast"></div>
+<script type="module" src="js/main.js"></script>
+</body>
+</html>
